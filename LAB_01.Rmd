@@ -1,0 +1,284 @@
+---
+title: "LAB_01"
+author: "Thomas Toledo Travassos"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Laboratório 01 — Importação e Manipulação de Dados em R
+
+## Exercicio 1
+
+Carregamento do pacote `tidyverse`.
+
+```{r}
+library(tidyverse)
+```
+
+
+## Exercicio 2
+
+```{r}
+View(table1)   #Se encontra no formato Tidy, pois as observacoes sao linhas e as variaveis sao colunas.
+
+
+```
+
+
+
+```{r}
+View(table2)  #Nao se encontra no formato Tidy, pois as variaveis cases e population estao englobadas na variavel type.
+
+```
+
+
+
+```{r}
+
+View(table3) #Nao se encontra no formato Tidy, pois a variavel rate engloba cases e population.
+
+
+```
+
+
+```{r}
+View(table4a) #Nao se encontra bo formato Tidy, pois o tibble em questao possui observacoes como variaveis.
+
+```
+
+
+```{r}
+
+View(table4b) #Nao se encontra bo formato Tidy, pois o tibble em questao possui observacoes como variaveis.
+
+
+
+```
+
+
+
+## Exercicio 3
+
+
+```{r}
+
+taxas <- table1 |>
+  mutate(rate = cases / population * 10000)
+
+
+
+
+taxas
+
+
+
+
+
+```
+
+
+## Exercicio 4
+
+
+
+```{r}
+
+casos_por_year <- table1 |>
+  group_by(year) |>
+  summarise(cases = sum(cases))
+
+
+
+
+```
+
+## Exercicio 5
+
+
+```{r}
+
+
+casos_por_country <- table1 |>
+  group_by(country) |>
+  summarise(cases = sum(cases))
+
+
+
+```
+
+
+## Exercicio 6
+
+
+```{r}
+
+table1 |>
+  select(country, year, cases) |>
+  pivot_wider(
+    names_from = year,
+    values_from = cases
+  )
+
+
+
+
+
+
+```
+
+## Exercicio 7
+
+
+```{r}
+
+ggplot(taxas, aes(x = year, y = rate, color = country)) +
+  geom_line()
+
+
+
+```
+
+
+## Exercicio 8
+
+```{r}
+
+casos <- table2 |>
+  filter(type == "cases") |>
+  select(country, year, cases = count)
+
+populacao <- table2 |>
+  filter(type == "population") |>
+  select(country, year, population = count)
+
+taxas2 <- casos |>
+  left_join(populacao, by = c("country", "year")) |>
+  mutate(rate = cases / population * 10000)
+
+taxas2
+```
+
+
+```{r}
+
+
+### Taxa utilizando `table4a` e `table4b`
+
+casos4 <- table4a |>
+  pivot_longer(
+    cols = c(`1999`, `2000`),
+    names_to = "year",
+    values_to = "cases"
+  )
+
+populacao4 <- table4b |>
+  pivot_longer(
+    cols = c(`1999`, `2000`),
+    names_to = "year",
+    values_to = "population"
+  )
+
+taxas4 <- casos4 |>
+  left_join(populacao4, by = c("country", "year")) |>
+  mutate(rate = cases / population * 10000)
+
+taxas4
+```
+
+
+## Exercicio 9
+
+
+```{r}
+
+ggplot(taxas2, aes(x = year, y = rate, color = country)) +
+  geom_line()
+
+
+```
+
+
+## Exercicio 10
+
+
+```{r}
+
+
+tidy4a <- table4a |>
+  pivot_longer(
+    cols = c(`1999`, `2000`),
+    names_to = "year",
+    values_to = "cases"
+  )
+
+tidy4a
+
+
+```
+
+
+
+## Exercicio 11
+
+```{r}
+tidy4b <- table4b |>
+  pivot_longer(
+    cols = c(`1999`, `2000`),
+    names_to = "year",
+    values_to = "population"
+  )
+
+tidy4b
+```
+
+
+
+
+## Exercicio 12
+
+```{r}
+tidy4 <- tidy4a |>
+  left_join(tidy4b, by = c("country", "year"))
+
+tidy4        # O comando em questao combina duas ou mais tabelas utilizando uma ou mais variaveis em comum como chave.
+
+
+```
+
+
+
+
+## Exercicio 13
+
+```{r}
+tidy2 <- table2 |>
+  pivot_wider(
+    names_from = type,
+    values_from = count
+  )
+
+tidy2
+```
+
+
+## Exercicio 14
+
+```{r}
+tidy3 <- table3 |>
+  separate(
+    rate,
+    into = c("cases", "population"),
+    sep = "/",
+    convert = TRUE
+  )
+
+tidy3
+```

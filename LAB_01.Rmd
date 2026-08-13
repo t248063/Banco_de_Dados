@@ -50,14 +50,14 @@ View(table3) #Nao se encontra no formato Tidy, pois a variavel rate engloba case
 
 
 ```{r}
-View(table4a) #Nao se encontra bo formato Tidy, pois o tibble em questao possui observacoes como variaveis.
+View(table4a) #Nao se encontra no formato Tidy, pois o tibble em questao possui observacoes como variaveis.
 
 ```
 
 
 ```{r}
 
-View(table4b) #Nao se encontra bo formato Tidy, pois o tibble em questao possui observacoes como variaveis.
+View(table4b) #Nao se encontra no formato Tidy, pois o tibble em questao possui observacoes como variaveis.
 
 
 

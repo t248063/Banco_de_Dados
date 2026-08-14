@@ -1,0 +1,43 @@
+
+##Exercicio 10
+
+SELECT * FROM EMPLOYEE
+
+
+##Exercicio 11
+
+
+SELECT * FROM  EMPLOYEE WHERE SALARY > 1000
+
+
+##Exercicio 12
+
+
+SELECT * FROM EMPLOYEE WHERE ENO = 2000
+
+
+
+##Exercicio 13
+
+
+
+SELECT ENAME, DNO FROM EMPLOYEE
+
+
+
+##Exercicio 14
+
+
+SELECT ENAME, SALARY FROM EMPLOYEE WHERE SALARY < 1000
+
+
+
+
+
+
+
+
+
+
+
+

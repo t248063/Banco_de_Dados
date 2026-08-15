@@ -27,7 +27,8 @@ library(tidyverse)
 ## Exercicio 2
 
 ```{r}
-View(table1)   #Se encontra no formato Tidy, pois as observacoes sao linhas e as variaveis sao colunas.
+View(table1)   #Se encontra no formato Tidy, pois as observacoes sao linhas 
+                #e as variaveis sao colunas.
 
 
 ```
@@ -35,7 +36,8 @@ View(table1)   #Se encontra no formato Tidy, pois as observacoes sao linhas e as
 
 
 ```{r}
-View(table2)  #Nao se encontra no formato Tidy, pois as variaveis cases e population estao englobadas na variavel type.
+View(table2)  #Nao se encontra no formato Tidy, pois as variaveis cases 
+                #e population estao englobadas na variavel type.
 
 ```
 
@@ -43,21 +45,24 @@ View(table2)  #Nao se encontra no formato Tidy, pois as variaveis cases e popula
 
 ```{r}
 
-View(table3) #Nao se encontra no formato Tidy, pois a variavel rate engloba cases e population.
+View(table3) #Nao se encontra no formato Tidy, pois a variavel rate engloba 
+               #cases e population.
 
 
 ```
 
 
 ```{r}
-View(table4a) #Nao se encontra no formato Tidy, pois o tibble em questao possui observacoes como variaveis.
+View(table4a) #Nao se encontra no formato Tidy, pois o tibble em questao possui 
+               #observacoes como variaveis.
 
 ```
 
 
 ```{r}
 
-View(table4b) #Nao se encontra no formato Tidy, pois o tibble em questao possui observacoes como variaveis.
+View(table4b) #Nao se encontra no formato Tidy, pois o tibble em questao possui 
+               #observacoes como variaveis.
 
 
 
@@ -248,7 +253,8 @@ tidy4b
 tidy4 <- tidy4a |>
   left_join(tidy4b, by = c("country", "year"))
 
-tidy4        # O comando em questao combina duas ou mais tabelas utilizando uma ou mais variaveis em comum como chave.
+tidy4        # O comando em questao combina duas ou mais tabelas utilizando uma 
+              #ou mais variaveis em comum como chave.
 
 
 ```
